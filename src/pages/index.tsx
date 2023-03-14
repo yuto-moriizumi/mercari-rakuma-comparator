@@ -1,7 +1,12 @@
 import Head from 'next/head';
-import { Inter } from 'next/font/google';
 import {
+  Box,
+  FormControl,
+  FormControlLabel,
+  FormLabel,
   Paper,
+  Radio,
+  RadioGroup,
   Stack,
   Table,
   TableBody,
@@ -9,17 +14,140 @@ import {
   TableContainer,
   TableHead,
   TableRow,
+  TextField,
   Typography,
 } from '@mui/material';
 import { MercariIcon } from '@/components/MercariIcon';
 import { RakumaIcon } from '@/components/RakumaIcon';
 import { shippings } from '@/shippings';
+import { Container } from '@mui/system';
+import { useCallback, useMemo, useState } from 'react';
 
 const TITLE = 'メルカリラクマ 配送料比較表';
 
-const inter = Inter({ subsets: ['latin'] });
-
 export default function Home() {
+  const [selectedMercariShipping, setSelectedMercariShipping] = useState<
+    number | undefined
+  >(undefined);
+  const [selectedRakumaShipping, setSelectedRakumaShipping] = useState<
+    number | undefined
+  >(undefined);
+  const [service, setService] = useState('none');
+  const [g, setG] = useState(0);
+  const [height, setHeight] = useState(0);
+  const [filteredShippings, setFilteredShippings] = useState(shippings);
+  const filter = () =>
+    setFilteredShippings(
+      shippings.filter((shipping) => {
+        const pass_service =
+          service === 'none' ||
+          (service === 'mercari' && shipping.available.mercari) ||
+          (service === 'rakuma' && shipping.available.rakuma);
+        const pass_height =
+          Number.isNaN(height) || shipping.maxHeight >= height;
+        const pass_g = Number.isNaN(g) || shipping.g >= g;
+        return pass_service && pass_height && pass_g;
+      })
+    );
+
+  const renderTable = useMemo(
+    () => (
+      <TableContainer component={Paper}>
+        <Table>
+          <TableHead>
+            <TableRow>
+              <TableCell>
+                <Typography>配送種類</Typography>
+              </TableCell>
+              <TableCell>
+                <Typography>梱包サイズ</Typography>
+              </TableCell>
+              <TableCell>
+                <Typography>
+                  高さ <br /> 制限
+                </Typography>
+              </TableCell>
+              <TableCell>
+                <Typography>
+                  重量 <br /> 制限
+                </Typography>
+              </TableCell>
+              <TableCell>
+                <Typography>送料</Typography>
+              </TableCell>
+              <TableCell>
+                <Typography>匿名?</Typography>
+              </TableCell>
+              <TableCell>
+                <MercariIcon />
+              </TableCell>
+              <TableCell>
+                <RakumaIcon />
+              </TableCell>
+            </TableRow>
+          </TableHead>
+          <TableBody>
+            {filteredShippings.map(
+              ({
+                available,
+                name,
+                maxHeight,
+                size,
+                g,
+                cost,
+                isAnonymous,
+                id,
+              }) => (
+                <TableRow key={id}>
+                  <TableCell>
+                    <Box
+                      flexDirection="row"
+                      alignContent="center"
+                      display="flex"
+                    >
+                      <MercariIcon valid={available.mercari} />
+                      <RakumaIcon valid={available.rakuma} />
+                      <Typography>{name}</Typography>
+                    </Box>
+                  </TableCell>
+                  <TableCell>
+                    <Typography>{size}</Typography>
+                  </TableCell>
+                  <TableCell>
+                    <Typography textAlign="right">{maxHeight} cm</Typography>
+                  </TableCell>
+                  <TableCell>
+                    <Typography textAlign="right">
+                      {g >= 1000 ? `${g / 1000} kg` : `${g} g`}
+                    </Typography>
+                  </TableCell>
+                  <TableCell>
+                    <Typography textAlign="right">{cost} 円</Typography>
+                  </TableCell>
+                  <TableCell>
+                    <Typography>{isAnonymous ? '匿名' : '記名'}</Typography>
+                  </TableCell>
+                  <TableCell>
+                    <Radio
+                      checked={selectedMercariShipping === id}
+                      onChange={() => setSelectedMercariShipping(id)}
+                    />
+                  </TableCell>
+                  <TableCell>
+                    <Radio
+                      checked={selectedRakumaShipping === id}
+                      onChange={() => setSelectedRakumaShipping(id)}
+                    />
+                  </TableCell>
+                </TableRow>
+              )
+            )}
+          </TableBody>
+        </Table>
+      </TableContainer>
+    ),
+    [filteredShippings, selectedMercariShipping, selectedRakumaShipping]
+  );
   return (
     <>
       <Head>
@@ -31,253 +159,61 @@ export default function Home() {
         />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <main>
+      <Container maxWidth="xl">
         <Stack spacing={2}>
           <Typography variant="h2" textAlign="center">
             {TITLE}
           </Typography>
-          {/* <Accordion className="mb-3">
-              <Card>
-                <Card.Header>
-                  <Accordion.Toggle
-                    as={Button}
-                    variant="link"
-                    eventKey="0"
-                    className="p-0"
-                  >
-                    利益比較 ▼
-                  </Accordion.Toggle>
-                </Card.Header>
-                <Accordion.Collapse eventKey="0">
-                  <Card.Body>
-                    <p>
-                      発送サイズと出品価格に基づいて利益を計算します。「フィルター」の高さや重量の入力が必要です。
-                    </p>
-                    <Form inline className="mb-2">
-                      <Form.Label className="mr-2">出品価格</Form.Label>
-                      <Form.ConTableRowol
-                        placeholder="円単位"
-                        onChange={(e) =>
-                          TableCellis.setState({
-                            sell: parseInt(e.target.value, 10),
-                          })
-                        }
-                      />
-                    </Form>
-                    <p className="mb-1">
-                      メルカリの場合：
-                      {merukari_select !== -1
-                        ? `${shippings[merukari_select].name},${MaTableCell.ceil(
-                            sell * (1 - 0.1) - shippings[merukari_select].cost
-                          )}円`
-                        : '配送方法を選択してください'}
-                    </p>
-                    <p>
-                      ラクマの場合：
-                      {rakuma_select !== -1
-                        ? `${shippings[rakuma_select].name},${MaTableCell.ceil(
-                            sell * (1 - 0.06 * 1.1) -
-                              shippings[rakuma_select].cost
-                          )}円`
-                        : '配送方法を選択してください'}
-                    </p>
-                  </Card.Body>
-                </Accordion.Collapse>
-              </Card>
-            </Accordion> */}
-          {/* <Form className="mb-3">
-          <h2>フィルター</h2>
-          <Form.Row className="mb-2">
-            <Col>サービス</Col>
-            <Col>
-              <Form.Check
-                name="service"
-                type="radio"
-                inline
-                label="全て"
-                onClick={() => TableCellis.setState({ service: 'none' })}
-                checked={service === 'none'}
-              />
-            </Col>
-            <Col>
-              <Form.Check
-                name="service"
-                type="radio"
-                inline
-                label={
-                  <>
-                    <MercariIcon valid />
-                    メルカリ
-                  </>
-                }
-                onClick={() => TableCellis.setState({ service: 'mercari' })}
-              />
-            </Col>
-            <Col>
-              <Form.Check
-                name="service"
-                type="radio"
-                inline
-                label={
-                  <>
-                    <RakumaIcon valid />
-                    ラクマ
-                  </>
-                }
-                onClick={() => TableCellis.setState({ service: 'rakuma' })}
-              />
-            </Col>
-          </Form.Row>
-          <Form.Row className="mb-2">
-            <Col>高さで絞る</Col>
-            <Col>
-              <Form.ConTableRowol
-                placeholder="cm単位"
+          <Typography variant="h4">フィルター</Typography>
+          <Stack direction="row" spacing={2} justifyContent="space-around">
+            <FormControl fullWidth>
+              <FormLabel>サービス</FormLabel>
+              <RadioGroup
+                row
+                defaultValue="none"
                 onChange={(e) => {
-                  TableCellis.setState({
-                    height: parseInt(e.target.value, 10),
-                  });
+                  setService(e.target.value);
+                  filter();
                 }}
-              />
-            </Col>
-          </Form.Row>
-          <Form.Row>
-            <Col>重量で絞る</Col>
-            <Col>
-              <Form.ConTableRowol
-                placeholder="g単位"
-                onChange={(e) => {
-                  TableCellis.setState({
-                    g: parseInt(e.target.value, 10),
-                  });
-                }}
-              />
-            </Col>
-          </Form.Row>
-        </Form> */}
-          <TableContainer component={Paper}>
-            <Table>
-              <TableHead>
-                <TableRow>
-                  <TableCell>
-                    <Typography>配送種類</Typography>
-                  </TableCell>
-                  <TableCell>
-                    <Typography>梱包サイズ</Typography>
-                  </TableCell>
-                  <TableCell>
-                    <Typography>
-                      高さ <br /> 制限
-                    </Typography>
-                  </TableCell>
-                  <TableCell>
-                    <Typography>
-                      重量 <br /> 制限
-                    </Typography>
-                  </TableCell>
-                  <TableCell>
-                    <Typography>送料</Typography>
-                  </TableCell>
-                  <TableCell>
-                    <Typography>匿名?</Typography>
-                  </TableCell>
-                  <TableCell>
-                    <MercariIcon />
-                  </TableCell>
-                  <TableCell>
-                    <RakumaIcon />
-                  </TableCell>
-                </TableRow>
-              </TableHead>
-              <TableBody>
-                {shippings
-                  // .filter((shipping) => {
-                  //   // 条件で配送方法をフィルターする
-                  //   const pass_service =
-                  //     service === 'none' ||
-                  //     (service === 'mercari' && shipping.isAvailable4Mercari) ||
-                  //     (service === 'rakuma' && shipping.isAvailable4Rakuma);
-                  //   const pass_height =
-                  //     Number.isNaN(height) || shipping.maxHeight >= height;
-                  //   const pass_g = Number.isNaN(g) || shipping.g >= g;
-                  //   return pass_service && pass_height && pass_g;
-                  // })
-                  .map(
-                    (
-                      {
-                        available,
-                        name,
-                        maxHeight,
-                        size,
-                        g,
-                        cost,
-                        isAnonymous,
-                      },
-                      i
-                    ) => (
-                      <TableRow key={i}>
-                        <TableCell>
-                          <MercariIcon valid={available.mercari} />
-                          <RakumaIcon valid={available.rakuma} />
-                          <Typography>{name}</Typography>
-                        </TableCell>
-                        <TableCell>
-                          <Typography>{size}</Typography>
-                        </TableCell>
-                        <TableCell>
-                          <Typography textAlign="right">
-                            {maxHeight} cm
-                          </Typography>
-                        </TableCell>
-                        <TableCell>
-                          <Typography textAlign="right">
-                            {g >= 1000 ? `${g / 1000} kg` : `${g} g`}
-                          </Typography>
-                        </TableCell>
-                        <TableCell>
-                          <Typography textAlign="right">{cost} 円</Typography>
-                        </TableCell>
-                        <TableCell>
-                          <Typography>
-                            {isAnonymous ? '匿名' : '記名'}
-                          </Typography>
-                        </TableCell>
-                        <TableCell>
-                          {/* <Form.Check
-                          name="merucari_select"
-                          type="radio"
-                          inline
-                          disabled={!shipping.isAvailable4Mercari}
-                          onClick={() =>
-                            TableCellis.setState({
-                              merukari_select: shipping.index,
-                            })
-                          }
-                          className="mx-0"
-                        /> */}
-                        </TableCell>
-                        <TableCell>
-                          {/* <Form.Check
-                          name="rakuma_select"
-                          type="radio"
-                          inline
-                          disabled={!shipping.isAvailable4Rakuma}
-                          onClick={() =>
-                            TableCellis.setState({
-                              rakuma_select: shipping.index,
-                            })
-                          }
-                          className="mx-0"
-                        /> */}
-                        </TableCell>
-                      </TableRow>
-                    )
-                  )}
-              </TableBody>
-            </Table>
-          </TableContainer>
+              >
+                <FormControlLabel
+                  value="none"
+                  control={<Radio />}
+                  label="未選択"
+                />
+                <FormControlLabel
+                  value="mercari"
+                  control={<Radio />}
+                  label={<MercariIcon valid />}
+                />
+                <FormControlLabel
+                  value="rakuma"
+                  control={<Radio />}
+                  label={<RakumaIcon valid />}
+                />
+              </RadioGroup>
+            </FormControl>
+            <TextField
+              label="高さ"
+              type="number"
+              fullWidth
+              value={height}
+              onChange={(e) => setHeight(Number(e.target.value))}
+              onBlur={filter}
+            />
+            <TextField
+              label="重さ"
+              placeholder="g単位"
+              type="number"
+              fullWidth
+              value={g}
+              onChange={(e) => setG(Number(e.target.value))}
+              onBlur={filter}
+            />
+          </Stack>
+          <Box>{renderTable}</Box>
         </Stack>
-      </main>
+      </Container>
     </>
   );
 }

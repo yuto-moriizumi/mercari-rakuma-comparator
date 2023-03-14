@@ -1,4 +1,5 @@
 export interface Shipping {
+  id: number;
   name: string;
   size: string;
   maxHeight: number;
@@ -663,4 +664,6 @@ export const shippings: Shipping[] = [
       rakuma: true,
     },
   },
-];
+]
+  .map((s, i) => ({ id: i, ...s }))
+  .sort((a, b) => a.cost - b.cost);
