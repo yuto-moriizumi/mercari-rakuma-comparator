@@ -1,3 +1,4 @@
+/* istanbul ignore file */
 export interface Shipping {
   id: number;
   name: string;
