@@ -22,8 +22,10 @@ import { RakumaIcon } from '@/components/RakumaIcon';
 import { shippings } from '@/shippings';
 import { Container } from '@mui/system';
 import { useMemo, useState } from 'react';
+import { Service } from '@/utils';
 
 const TITLE = 'メルカリラクマ 配送料比較表';
+type ServiceOption = Service | 'none';
 
 export default function Home() {
   const [selectedMercariShipping, setSelectedMercariShipping] = useState<
@@ -32,11 +34,11 @@ export default function Home() {
   const [selectedRakumaShipping, setSelectedRakumaShipping] = useState<
     number | undefined
   >(undefined);
-  const [service, setService] = useState('none');
+  const [service, setService] = useState<ServiceOption>('none');
   const [g, setG] = useState(0);
   const [height, setHeight] = useState(0);
   const [filteredShippings, setFilteredShippings] = useState(shippings);
-  const filter = () =>
+  const filter = (service: ServiceOption) =>
     setFilteredShippings(
       shippings.filter((shipping) => {
         const pass_service =
@@ -49,7 +51,6 @@ export default function Home() {
         return pass_service && pass_height && pass_g;
       })
     );
-
   const renderTable = useMemo(
     () => (
       <TableContainer component={Paper}>
@@ -172,8 +173,9 @@ export default function Home() {
                 row
                 defaultValue="none"
                 onChange={(e) => {
-                  setService(e.target.value);
-                  filter();
+                  const service = e.target.value as ServiceOption;
+                  setService(service);
+                  filter(service);
                 }}
               >
                 <FormControlLabel
@@ -199,7 +201,7 @@ export default function Home() {
               fullWidth
               value={height}
               onChange={(e) => setHeight(Number(e.target.value))}
-              onBlur={filter}
+              onBlur={() => filter(service)}
             />
             <TextField
               label="重さ"
@@ -208,7 +210,7 @@ export default function Home() {
               fullWidth
               value={g}
               onChange={(e) => setG(Number(e.target.value))}
-              onBlur={filter}
+              onBlur={() => filter(service)}
             />
           </Stack>
           <Box>{renderTable}</Box>

@@ -1,3 +1,5 @@
+import { Service } from './utils';
+
 /* istanbul ignore file */
 export interface Shipping {
   id: number;
@@ -7,10 +9,7 @@ export interface Shipping {
   g: number;
   cost: number;
   isAnonymous?: boolean;
-  available: {
-    mercari: boolean;
-    rakuma: boolean;
-  };
+  available: Record<Service, boolean>;
 }
 
 export const shippings: Shipping[] = [
