@@ -21,7 +21,7 @@ import { MercariIcon } from '@/components/MercariIcon';
 import { RakumaIcon } from '@/components/RakumaIcon';
 import { shippings } from '@/shippings';
 import { Container } from '@mui/system';
-import { useCallback, useMemo, useState } from 'react';
+import { useMemo, useState } from 'react';
 
 const TITLE = 'メルカリラクマ 配送料比較表';
 
