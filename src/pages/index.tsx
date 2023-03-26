@@ -79,12 +79,12 @@ export default function Home() {
               <TableCell>
                 <Typography>匿名?</Typography>
               </TableCell>
-              <TableCell>
+              {/* <TableCell>
                 <MercariIcon />
               </TableCell>
               <TableCell>
                 <RakumaIcon />
-              </TableCell>
+              </TableCell> */}
             </TableRow>
           </TableHead>
           <TableBody>
@@ -128,7 +128,7 @@ export default function Home() {
                   <TableCell>
                     <Typography>{isAnonymous ? '匿名' : '記名'}</Typography>
                   </TableCell>
-                  <TableCell>
+                  {/* <TableCell>
                     <Radio
                       checked={selectedMercariShipping === id}
                       onChange={() => setSelectedMercariShipping(id)}
@@ -139,7 +139,7 @@ export default function Home() {
                       checked={selectedRakumaShipping === id}
                       onChange={() => setSelectedRakumaShipping(id)}
                     />
-                  </TableCell>
+                  </TableCell> */}
                 </TableRow>
               )
             )}
