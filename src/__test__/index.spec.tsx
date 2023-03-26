@@ -1,18 +1,20 @@
 import '@testing-library/jest-dom/extend-expect';
 import { fireEvent, render, screen } from '@testing-library/react';
-import Home from '..';
+import Home from '../pages';
+
+const MERCARI_SHIPPING = 'らくらくメルカリ便 ネコポス';
+const RAKUMA_SHIPPING = 'かんたんラクマパック ゆうパケットポスト';
 
 describe('Home', () => {
-  const MERCARI_SHIPPING = 'らくらくメルカリ便 ネコポス';
-  const RAKUMA_SHIPPING = 'かんたんラクマパック ゆうパケットポスト';
+  beforeEach(() => {
+    render(<Home />);
+  });
 
   it('should display title', () => {
-    render(<Home />);
     expect(screen.getByText('メルカリラクマ 配送料比較表')).toBeInTheDocument();
   });
 
   it('should filter rakuma shippings out', () => {
-    render(<Home />);
     const radioGroup = screen.getByRole('radiogroup');
     const mercariButton = radioGroup?.children[1];
     expect(screen.getByText(RAKUMA_SHIPPING)).toBeInTheDocument();
@@ -22,7 +24,6 @@ describe('Home', () => {
   });
 
   it('should filter mercari shippings out', () => {
-    render(<Home />);
     const radioGroup = screen.getByRole('radiogroup');
     const rakumaButton = radioGroup?.children[2];
 
@@ -35,9 +36,8 @@ describe('Home', () => {
   it('should filter small shippings out', () => {
     const SMALL_SHIPPING = 'ミニレター';
     const BIG_SHIPPING = 'レターパックプラス';
-    render(<Home />);
+
     const heightInput = screen.getByLabelText('高さ');
-    console.log(heightInput);
     expect(screen.getByText(SMALL_SHIPPING)).toBeInTheDocument();
     heightInput && fireEvent.change(heightInput, { target: { value: 10 } });
     fireEvent.blur(heightInput);
@@ -48,9 +48,8 @@ describe('Home', () => {
   it('should filter heavy shippings out', () => {
     const LIGHT_SHIPPING = 'ミニレター';
     const HEAVY_SHIPPING = 'レターパックプラス';
-    render(<Home />);
+
     const gInput = screen.getByLabelText('重さ');
-    console.log(gInput);
     expect(screen.getByText(LIGHT_SHIPPING)).toBeInTheDocument();
     gInput && fireEvent.change(gInput, { target: { value: 100 } });
     fireEvent.blur(gInput);

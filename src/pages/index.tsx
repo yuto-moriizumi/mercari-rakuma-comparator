@@ -147,7 +147,7 @@ export default function Home() {
         </Table>
       </TableContainer>
     ),
-    [filteredShippings, selectedMercariShipping, selectedRakumaShipping]
+    [filteredShippings]
   );
   return (
     <>
