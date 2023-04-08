@@ -120,7 +120,7 @@ export const shippings: Shipping[] = [
     size: '34×25cm以内',
     maxHeight: 3,
     g: 1000,
-    cost: 198,
+    cost: 185,
     available: {
       mercari: true,
       rakuma: true,
