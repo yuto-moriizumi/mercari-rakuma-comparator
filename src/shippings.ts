@@ -327,7 +327,7 @@ export const shippings: Shipping[] = [
     cost: 380,
     isAnonymous: true,
     available: {
-      mercari: true,
+      mercari: false,
       rakuma: true,
     },
   },
@@ -351,7 +351,7 @@ export const shippings: Shipping[] = [
     cost: 380 + 65,
     isAnonymous: true,
     available: {
-      mercari: true,
+      mercari: false,
       rakuma: true,
     },
   },
