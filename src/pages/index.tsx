@@ -4,6 +4,7 @@ import {
   FormControl,
   FormControlLabel,
   FormLabel,
+  InputAdornment,
   Paper,
   Radio,
   RadioGroup,
@@ -35,10 +36,7 @@ export default function Home() {
   const filter = (service: ServiceOption) =>
     setFilteredShippings(
       shippings.filter((shipping) => {
-        const pass_service =
-          service === "none" ||
-          (service === "mercari" && shipping.available.mercari) ||
-          (service === "rakuma" && shipping.available.rakuma);
+        const pass_service = service === "none" || shipping.available[service];
         const pass_height =
           Number.isNaN(height) || shipping.maxHeight >= height;
         const pass_g = Number.isNaN(g) || shipping.g >= g;
@@ -73,12 +71,6 @@ export default function Home() {
               <TableCell>
                 <Typography>匿名?</Typography>
               </TableCell>
-              {/* <TableCell>
-                <MercariIcon />
-              </TableCell>
-              <TableCell>
-                <RakumaIcon />
-              </TableCell> */}
             </TableRow>
           </TableHead>
           <TableBody>
@@ -184,15 +176,22 @@ export default function Home() {
               value={height}
               onChange={(e) => setHeight(Number(e.target.value))}
               onBlur={() => filter(service)}
+              InputProps={{
+                endAdornment: (
+                  <InputAdornment position="end">cm</InputAdornment>
+                ),
+              }}
             />
             <TextField
               label="重さ"
-              placeholder="g単位"
               type="number"
               fullWidth
               value={g}
               onChange={(e) => setG(Number(e.target.value))}
               onBlur={() => filter(service)}
+              InputProps={{
+                endAdornment: <InputAdornment position="end">g</InputAdornment>,
+              }}
             />
           </Stack>
           <Box>{renderTable}</Box>
