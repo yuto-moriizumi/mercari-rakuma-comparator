@@ -332,11 +332,23 @@ export const shippings: Shipping[] = [
     },
   },
   {
-    name: 'ゆうゆうメルカリ便 ゆうパケットプラス',
+    name: 'ゆうゆうメルカリ便 ゆうパケットプラス(箱別)',
     size: '24×17cm以内',
     maxHeight: 7,
     g: 2000,
     cost: 455,
+    isAnonymous: true,
+    available: {
+      mercari: true,
+      rakuma: false,
+    },
+  },
+  {
+    name: 'ゆうゆうメルカリ便 ゆうパケットプラス(箱込)',
+    size: '24×17cm以内',
+    maxHeight: 7,
+    g: 2000,
+    cost: 455 + 65,
     isAnonymous: true,
     available: {
       mercari: true,
@@ -356,8 +368,20 @@ export const shippings: Shipping[] = [
     },
   },
   {
-    name: 'らくらくメルカリ便 宅急便コンパクト',
+    name: 'らくらくメルカリ便 宅急便コンパクト(箱型)',
     size: '縦25×横20',
+    maxHeight: 5,
+    g: 10000,
+    cost: 450 + 70,
+    isAnonymous: true,
+    available: {
+      mercari: true,
+      rakuma: false,
+    },
+  },
+  {
+    name: 'らくらくメルカリ便 宅急便コンパクト(薄型)',
+    size: '縦34×横24.8',
     maxHeight: 5,
     g: 10000,
     cost: 450 + 70,
