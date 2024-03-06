@@ -1,4 +1,4 @@
-import Head from 'next/head';
+import Head from "next/head";
 import {
   Box,
   FormControl,
@@ -16,25 +16,19 @@ import {
   TableRow,
   TextField,
   Typography,
-} from '@mui/material';
-import { MercariIcon } from '@/components/MercariIcon';
-import { RakumaIcon } from '@/components/RakumaIcon';
-import { shippings } from '@/shippings';
-import { Container } from '@mui/system';
-import { useMemo, useState } from 'react';
-import { Service } from '@/utils';
+} from "@mui/material";
+import { MercariIcon } from "@/components/MercariIcon";
+import { RakumaIcon } from "@/components/RakumaIcon";
+import { shippings } from "@/shippings";
+import { Container } from "@mui/system";
+import { useMemo, useState } from "react";
+import { Service } from "@/utils";
 
-const TITLE = 'メルカリラクマ 配送料比較表';
-type ServiceOption = Service | 'none';
+const TITLE = "メルカリラクマ 配送料比較表";
+type ServiceOption = Service | "none";
 
 export default function Home() {
-  const [selectedMercariShipping, setSelectedMercariShipping] = useState<
-    number | undefined
-  >(undefined);
-  const [selectedRakumaShipping, setSelectedRakumaShipping] = useState<
-    number | undefined
-  >(undefined);
-  const [service, setService] = useState<ServiceOption>('none');
+  const [service, setService] = useState<ServiceOption>("none");
   const [g, setG] = useState(0);
   const [height, setHeight] = useState(0);
   const [filteredShippings, setFilteredShippings] = useState(shippings);
@@ -42,14 +36,14 @@ export default function Home() {
     setFilteredShippings(
       shippings.filter((shipping) => {
         const pass_service =
-          service === 'none' ||
-          (service === 'mercari' && shipping.available.mercari) ||
-          (service === 'rakuma' && shipping.available.rakuma);
+          service === "none" ||
+          (service === "mercari" && shipping.available.mercari) ||
+          (service === "rakuma" && shipping.available.rakuma);
         const pass_height =
           Number.isNaN(height) || shipping.maxHeight >= height;
         const pass_g = Number.isNaN(g) || shipping.g >= g;
         return pass_service && pass_height && pass_g;
-      })
+      }),
     );
   const renderTable = useMemo(
     () => (
@@ -126,28 +120,16 @@ export default function Home() {
                     <Typography textAlign="right">{cost} 円</Typography>
                   </TableCell>
                   <TableCell>
-                    <Typography>{isAnonymous ? '匿名' : '記名'}</Typography>
+                    <Typography>{isAnonymous ? "匿名" : "記名"}</Typography>
                   </TableCell>
-                  {/* <TableCell>
-                    <Radio
-                      checked={selectedMercariShipping === id}
-                      onChange={() => setSelectedMercariShipping(id)}
-                    />
-                  </TableCell>
-                  <TableCell>
-                    <Radio
-                      checked={selectedRakumaShipping === id}
-                      onChange={() => setSelectedRakumaShipping(id)}
-                    />
-                  </TableCell> */}
                 </TableRow>
-              )
+              ),
             )}
           </TableBody>
         </Table>
       </TableContainer>
     ),
-    [filteredShippings]
+    [filteredShippings],
   );
   return (
     <>
