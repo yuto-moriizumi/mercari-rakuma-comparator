@@ -1,11 +1,5 @@
 ﻿name: AutoMerge
-on:
-  workflow_run:
-    workflows:
-      - "Validate"
-    types: 
-      - completed
-    
+on: pull_request_target
 
 permissions:
   pull-requests: write
@@ -14,6 +8,7 @@ permissions:
 jobs:
   dependabot:
     runs-on: ubuntu-latest
+    needs: validate
     if: ${{github.event_name == 'pull_request_target'}}
     # && github.actor == 'dependabot[bot]'
     steps:
