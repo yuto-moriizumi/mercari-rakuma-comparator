@@ -25,7 +25,7 @@ import { Container } from "@mui/system";
 import { useMemo, useState } from "react";
 import { Service } from "@/utils";
 
-const TITLE = "メルカリラクマ 配送料比較表";
+const TITLE = "メルカリラクマ 配送料比較表"; //test
 type ServiceOption = Service | "none";
 
 export default function Home() {
