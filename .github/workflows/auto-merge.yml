@@ -14,7 +14,8 @@ permissions:
 jobs:
   dependabot:
     runs-on: ubuntu-latest
-    if: ${{github.event_name == 'pull_request_target' && github.actor == 'dependabot[bot]'}}
+    if: ${{github.event_name == 'pull_request_target'}}
+    # && github.actor == 'dependabot[bot]'
     steps:
       - name: Enable auto-merge for Dependabot PRs
         run: gh pr merge --auto --merge "$PR_URL"
