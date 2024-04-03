@@ -14,7 +14,7 @@
     "@emotion/react": "^11.10.6",
     "@emotion/styled": "^11.11.5",
     "@mui/material": "^5.15.14",
-    "@types/node": "20.12.2",
+    "@types/node": "20.12.3",
     "@types/react": "18.2.73",
     "@types/react-dom": "18.2.23",
     "eslint": "8.57.0",
