@@ -57,7 +57,7 @@ export default function Home() {
               </TableCell>
               <TableCell>
                 <Typography>
-                  高さ <br /> 制限
+                  厚さ <br /> 制限
                 </Typography>
               </TableCell>
               <TableCell>
@@ -170,7 +170,7 @@ export default function Home() {
               </RadioGroup>
             </FormControl>
             <TextField
-              label="高さ"
+              label="厚さ"
               type="number"
               fullWidth
               value={height}
