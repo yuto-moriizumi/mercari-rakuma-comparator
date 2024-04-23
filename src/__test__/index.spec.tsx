@@ -37,7 +37,7 @@ describe("Home", () => {
     const SMALL_SHIPPING = "ミニレター";
     const BIG_SHIPPING = "レターパックプラス";
 
-    const heightInput = screen.getByLabelText("高さ");
+    const heightInput = screen.getByLabelText("厚さ");
     expect(screen.getByText(SMALL_SHIPPING)).toBeInTheDocument();
     heightInput && fireEvent.change(heightInput, { target: { value: 10 } });
     fireEvent.blur(heightInput);
