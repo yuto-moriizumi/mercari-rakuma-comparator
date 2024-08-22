@@ -11,7 +11,7 @@
     "typecheck": "tsc --noEmit && echo Typecheck suceed"
   },
   "dependencies": {
-    "@emotion/react": "^11.13.0",
+    "@emotion/react": "^11.13.3",
     "@emotion/styled": "^11.13.0",
     "@mui/material": "^5.16.7",
     "@types/node": "22.5.0",
