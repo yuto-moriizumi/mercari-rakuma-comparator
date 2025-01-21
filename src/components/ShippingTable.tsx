@@ -1,5 +1,17 @@
 import { shippings } from "@/shippings";
-import { TableContainer, Paper, Table, TableHead, TableRow, TableCell, Typography, TableBody, Box } from "@mui/material";
+import {
+  TableContainer,
+  Paper,
+  Table,
+  TableHead,
+  TableRow,
+  TableCell,
+  Typography,
+  TableBody,
+  Box,
+  useMediaQuery,
+  useTheme,
+} from "@mui/material";
 import { MercariIcon } from "./MercariIcon";
 import { RakumaIcon } from "./RakumaIcon";
 import { ServiceOption } from "@/pages";
@@ -9,9 +21,12 @@ export function ShippingTable(props: {
   height: number;
   g: number;
 }) {
+  const theme = useTheme();
+  const isWideScreen = useMediaQuery(theme.breakpoints.up("sm"));
+
   return (
-    <TableContainer component={Paper}>
-      <Table>
+    <TableContainer component={Paper} sx={{ overflowX: "scroll" }}>
+      <Table size={isWideScreen ? "medium" : "small"}>
         <TableHead>
           <TableRow>
             <TableCell>
@@ -21,13 +36,17 @@ export function ShippingTable(props: {
               <Typography>梱包サイズ</Typography>
             </TableCell>
             <TableCell>
-              <Typography>
-                厚さ <br /> 制限
+              <Typography sx={{ wordBreak: "keep-all" }}>
+                厚さ
+                <wbr />
+                制限
               </Typography>
             </TableCell>
             <TableCell>
-              <Typography>
-                重量 <br /> 制限
+              <Typography sx={{ wordBreak: "keep-all" }}>
+                重量
+                <wbr />
+                制限
               </Typography>
             </TableCell>
             <TableCell>
@@ -62,32 +81,47 @@ export function ShippingTable(props: {
               }) => (
                 <TableRow key={id}>
                   <TableCell>
-                    <Box
-                      flexDirection="row"
-                      alignContent="center"
-                      display="flex"
-                    >
+                    <Box alignContent="center" display="flex" flexWrap="wrap">
                       <MercariIcon valid={available.mercari} />
                       <RakumaIcon valid={available.rakuma} />
-                      <Typography>{name}</Typography>
+                      <Typography sx={{ wordBreak: "keep-all" }}>
+                        {name}
+                      </Typography>
                     </Box>
                   </TableCell>
                   <TableCell>
-                    <Typography>{size}</Typography>
-                  </TableCell>
-                  <TableCell>
-                    <Typography textAlign="right">{maxHeight} cm</Typography>
-                  </TableCell>
-                  <TableCell>
-                    <Typography textAlign="right">
-                      {g >= 1000 ? `${g / 1000} kg` : `${g} g`}
+                    <Typography sx={{ wordBreak: "keep-all" }}>
+                      {size}
                     </Typography>
                   </TableCell>
                   <TableCell>
-                    <Typography textAlign="right">{cost} 円</Typography>
+                    <Typography
+                      textAlign="right"
+                      sx={{ wordBreak: "keep-all" }}
+                    >
+                      {maxHeight}cm
+                    </Typography>
                   </TableCell>
                   <TableCell>
-                    <Typography>{isAnonymous ? "匿名" : "記名"}</Typography>
+                    <Typography
+                      textAlign="right"
+                      sx={{ wordBreak: "keep-all" }}
+                    >
+                      {g >= 1000 ? `${g / 1000}kg` : `${g}g`}
+                    </Typography>
+                  </TableCell>
+                  <TableCell>
+                    <Typography
+                      textAlign="right"
+                      sx={{ wordBreak: "keep-all" }}
+                    >
+                      {cost}円
+                    </Typography>
+                  </TableCell>
+                  <TableCell>
+                    <Typography sx={{ wordBreak: "keep-all" }}>
+                      {isAnonymous ? "匿名" : "記名"}
+                    </Typography>
                   </TableCell>
                 </TableRow>
               ),
