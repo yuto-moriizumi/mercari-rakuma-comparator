@@ -37,12 +37,23 @@ export default function Home() {
         />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <Container maxWidth="xl">
+      <Container maxWidth="xl" sx={{ px: 0 }}>
         <Stack spacing={2}>
-          <Typography variant="h2" textAlign="center">
-            {TITLE}
+          <Typography
+            variant="h3"
+            component="h1"
+            textAlign="center"
+            sx={{
+              wordBreak: "keep-all",
+            }}
+          >
+            メルカリラクマ
+            <wbr />
+            配送料比較表
           </Typography>
-          <Typography variant="h4">フィルター</Typography>
+          <Typography variant="h5" component="h2">
+            フィルター
+          </Typography>
           <Stack direction="row" spacing={2} justifyContent="space-around">
             <FormControl fullWidth>
               <FormLabel>サービス</FormLabel>

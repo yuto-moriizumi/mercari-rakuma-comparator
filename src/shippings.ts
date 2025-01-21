@@ -151,7 +151,7 @@ export const shippings: Shipping[] = [
   },
   {
     name: "定型外郵便：規格外",
-    size: "３辺合計90㎝以内・長辺60cm以内",
+    size: "3辺合計90㎝以内・長辺60cm以内",
     maxHeight: 60,
     g: 50,
     cost: 200,
@@ -162,7 +162,7 @@ export const shippings: Shipping[] = [
   },
   {
     name: "定型外郵便：規格内",
-    size: "縦34×横25",
+    size: "縦34cm×横25cm",
     maxHeight: 3,
     g: 150,
     cost: 205,
@@ -184,7 +184,7 @@ export const shippings: Shipping[] = [
   },
   {
     name: "定型外郵便：規格外",
-    size: "３辺合計90㎝以内",
+    size: "3辺合計90㎝以内",
     maxHeight: 60,
     g: 100,
     cost: 220,
@@ -195,7 +195,7 @@ export const shippings: Shipping[] = [
   },
   {
     name: "ゆうパケット",
-    size: "３辺合計60cm以内",
+    size: "3辺合計60cm以内",
     maxHeight: 1,
     g: 1000,
     cost: 250,
@@ -230,7 +230,7 @@ export const shippings: Shipping[] = [
   },
   {
     name: "定型外郵便：規格外",
-    size: "３辺合計90㎝以内",
+    size: "3辺合計90㎝以内",
     maxHeight: 60,
     g: 150,
     cost: 290,
@@ -252,7 +252,7 @@ export const shippings: Shipping[] = [
   },
   {
     name: "ゆうパケット",
-    size: "３辺合計60cm以内",
+    size: "3辺合計60cm以内",
     maxHeight: 2,
     g: 1000,
     cost: 310,
@@ -264,7 +264,7 @@ export const shippings: Shipping[] = [
   },
   {
     name: "定型外郵便：規格外",
-    size: "３辺合計90㎝以内",
+    size: "3辺合計90㎝以内",
     maxHeight: 60,
     g: 250,
     cost: 340,
@@ -286,7 +286,7 @@ export const shippings: Shipping[] = [
   },
   {
     name: "ゆうパケット",
-    size: "３辺合計60cm以内",
+    size: "3辺合計60cm以内",
     maxHeight: 3,
     g: 1000,
     cost: 360,
@@ -393,7 +393,7 @@ export const shippings: Shipping[] = [
   },
   {
     name: "定型外郵便：規格外",
-    size: "３辺合計90㎝以内",
+    size: "3辺合計90㎝以内",
     maxHeight: 60,
     g: 500,
     cost: 500,

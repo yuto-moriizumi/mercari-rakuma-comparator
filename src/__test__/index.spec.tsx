@@ -11,7 +11,7 @@ describe("Home", () => {
   });
 
   it("should display title", () => {
-    expect(screen.getByText("メルカリラクマ 配送料比較表")).toBeInTheDocument();
+    expect(screen.getByText("メルカリラクマ配送料比較表")).toBeInTheDocument();
   });
 
   it("should filter rakuma shippings out", () => {
