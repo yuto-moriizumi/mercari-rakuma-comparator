@@ -32,6 +32,6 @@
     "@typescript-eslint/parser": "^8.32.1",
     "jest": "^30.0.2",
     "jest-environment-jsdom": "^30.0.2",
-    "prettier": "^3.5.3"
+    "prettier": "^3.6.0"
   }
 }
