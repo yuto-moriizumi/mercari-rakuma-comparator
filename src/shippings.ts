@@ -18,18 +18,7 @@ export const shippings: Shipping[] = [
     size: "郵便書簡",
     maxHeight: 1,
     g: 25,
-    cost: 62,
-    available: {
-      mercari: true,
-      rakuma: true,
-    },
-  },
-  {
-    name: "定型郵便",
-    size: "縦23.5×横12",
-    maxHeight: 1,
-    g: 25,
-    cost: 82,
+    cost: 85,
     available: {
       mercari: true,
       rakuma: true,
@@ -40,7 +29,7 @@ export const shippings: Shipping[] = [
     size: "縦23.5×横12",
     maxHeight: 1,
     g: 50,
-    cost: 92,
+    cost: 110,
     available: {
       mercari: true,
       rakuma: true,
@@ -51,7 +40,7 @@ export const shippings: Shipping[] = [
     size: "縦34×横25",
     maxHeight: 3,
     g: 50,
-    cost: 120,
+    cost: 140,
     available: {
       mercari: true,
       rakuma: true,
@@ -62,9 +51,33 @@ export const shippings: Shipping[] = [
     size: "縦34×横25",
     maxHeight: 3,
     g: 100,
-    cost: 140,
+    cost: 180,
     available: {
       mercari: true,
+      rakuma: true,
+    },
+  },
+  {
+    name: "ゆうパケットポストmini（メルカリ）",
+    size: "21.6×17.8cm以内・封筒別",
+    maxHeight: 3,
+    g: 2000,
+    cost: 160 + 20,
+    isAnonymous: true,
+    available: {
+      mercari: true,
+      rakuma: false,
+    },
+  },
+  {
+    name: "ゆうパケットポストmini（ラクマ）",
+    size: "21.6×17.8cm以内・封筒別",
+    maxHeight: 3,
+    g: 2000,
+    cost: 150 + 20,
+    isAnonymous: true,
+    available: {
+      mercari: false,
       rakuma: true,
     },
   },
@@ -97,7 +110,7 @@ export const shippings: Shipping[] = [
     size: "長辺34cm以内",
     maxHeight: 3,
     g: 1000,
-    cost: 180,
+    cost: 200,
     isAnonymous: true,
     available: {
       mercari: false,
@@ -109,7 +122,7 @@ export const shippings: Shipping[] = [
     size: "34×25cm以内",
     maxHeight: 3,
     g: 150,
-    cost: 180,
+    cost: 190,
     available: {
       mercari: true,
       rakuma: true,
@@ -117,10 +130,10 @@ export const shippings: Shipping[] = [
   },
   {
     name: "クリックポスト",
-    size: "34×25cm以内",
+    size: "長辺34cm・3辺計60cm以内",
     maxHeight: 3,
-    g: 1000,
-    cost: 185,
+    g: 2000,
+    cost: 240,
     available: {
       mercari: true,
       rakuma: true,
@@ -154,7 +167,18 @@ export const shippings: Shipping[] = [
     size: "3辺合計90㎝以内・長辺60cm以内",
     maxHeight: 60,
     g: 50,
-    cost: 200,
+    cost: 260,
+    available: {
+      mercari: true,
+      rakuma: true,
+    },
+  },
+  {
+    name: "定型外郵便：規格外",
+    size: "3辺合計90㎝以内",
+    maxHeight: 60,
+    g: 1000,
+    cost: 920,
     available: {
       mercari: true,
       rakuma: true,
@@ -165,7 +189,7 @@ export const shippings: Shipping[] = [
     size: "縦34cm×横25cm",
     maxHeight: 3,
     g: 150,
-    cost: 205,
+    cost: 270,
     available: {
       mercari: true,
       rakuma: true,
@@ -176,7 +200,7 @@ export const shippings: Shipping[] = [
     size: "34×25cm以内",
     maxHeight: 3,
     g: 250,
-    cost: 215,
+    cost: 230,
     available: {
       mercari: true,
       rakuma: true,
@@ -187,19 +211,7 @@ export const shippings: Shipping[] = [
     size: "3辺合計90㎝以内",
     maxHeight: 60,
     g: 100,
-    cost: 220,
-    available: {
-      mercari: true,
-      rakuma: true,
-    },
-  },
-  {
-    name: "ゆうパケット",
-    size: "3辺合計60cm以内",
-    maxHeight: 1,
-    g: 1000,
-    cost: 250,
-    isAnonymous: true,
+    cost: 290,
     available: {
       mercari: true,
       rakuma: true,
@@ -210,7 +222,7 @@ export const shippings: Shipping[] = [
     size: "縦34×横25",
     maxHeight: 3,
     g: 250,
-    cost: 250,
+    cost: 320,
     available: {
       mercari: true,
       rakuma: true,
@@ -221,7 +233,7 @@ export const shippings: Shipping[] = [
     size: "縦32.5cm x 横22.5cm",
     maxHeight: 3,
     g: 2000,
-    cost: 215 + 5,
+    cost: 215,
     isAnonymous: true,
     available: {
       mercari: true,
@@ -233,7 +245,7 @@ export const shippings: Shipping[] = [
     size: "3辺合計90㎝以内",
     maxHeight: 60,
     g: 150,
-    cost: 290,
+    cost: 390,
     available: {
       mercari: true,
       rakuma: true,
@@ -244,19 +256,7 @@ export const shippings: Shipping[] = [
     size: "34×25cm以内",
     maxHeight: 3,
     g: 500,
-    cost: 300,
-    available: {
-      mercari: true,
-      rakuma: true,
-    },
-  },
-  {
-    name: "ゆうパケット",
-    size: "3辺合計60cm以内",
-    maxHeight: 2,
-    g: 1000,
-    cost: 310,
-    isAnonymous: true,
+    cost: 320,
     available: {
       mercari: true,
       rakuma: true,
@@ -267,7 +267,7 @@ export const shippings: Shipping[] = [
     size: "3辺合計90㎝以内",
     maxHeight: 60,
     g: 250,
-    cost: 340,
+    cost: 450,
     available: {
       mercari: true,
       rakuma: true,
@@ -278,31 +278,7 @@ export const shippings: Shipping[] = [
     size: "34×25cm以内",
     maxHeight: 3,
     g: 1000,
-    cost: 350,
-    available: {
-      mercari: true,
-      rakuma: true,
-    },
-  },
-  {
-    name: "ゆうパケット",
-    size: "3辺合計60cm以内",
-    maxHeight: 3,
-    g: 1000,
-    cost: 360,
-    isAnonymous: true,
-    available: {
-      mercari: true,
-      rakuma: true,
-    },
-  },
-  {
-    name: "レターパックライト",
-    size: "34×24.8cm",
-    maxHeight: 3,
-    g: 4000,
-    cost: 370,
-    isAnonymous: true,
+    cost: 380,
     available: {
       mercari: true,
       rakuma: true,
@@ -313,7 +289,41 @@ export const shippings: Shipping[] = [
     size: "縦34×横25",
     maxHeight: 3,
     g: 500,
-    cost: 380,
+    cost: 510,
+    available: {
+      mercari: true,
+      rakuma: true,
+    },
+  },
+  {
+    name: "定型外郵便：規格内",
+    size: "縦34×横25",
+    maxHeight: 3,
+    g: 1000,
+    cost: 750,
+    available: {
+      mercari: true,
+      rakuma: true,
+    },
+  },
+  {
+    name: "定型外郵便：規格外",
+    size: "3辺合計90㎝以内",
+    maxHeight: 60,
+    g: 500,
+    cost: 660,
+    available: {
+      mercari: true,
+      rakuma: true,
+    },
+  },
+  {
+    name: "レターパックライト",
+    size: "34×24.8cm",
+    maxHeight: 3,
+    g: 4000,
+    cost: 430,
+    isAnonymous: true,
     available: {
       mercari: true,
       rakuma: true,
@@ -396,7 +406,7 @@ export const shippings: Shipping[] = [
     size: "3辺合計90㎝以内",
     maxHeight: 60,
     g: 500,
-    cost: 500,
+    cost: 660,
     available: {
       mercari: true,
       rakuma: true,
@@ -407,7 +417,7 @@ export const shippings: Shipping[] = [
     size: "34×24.8cm・厚さは入ればOK",
     maxHeight: 12,
     g: 4000,
-    cost: 520,
+    cost: 600,
     available: {
       mercari: true,
       rakuma: true,
@@ -418,7 +428,7 @@ export const shippings: Shipping[] = [
     size: "縦25×横20",
     maxHeight: 5,
     g: 100000,
-    cost: 530 + 70,
+    cost: 430 + 70,
     available: {
       mercari: false,
       rakuma: true,
@@ -501,7 +511,7 @@ export const shippings: Shipping[] = [
     size: "3辺合計60cm以内",
     maxHeight: 60,
     g: 2000,
-    cost: 800,
+    cost: 650,
     available: {
       mercari: false,
       rakuma: true,
@@ -512,7 +522,7 @@ export const shippings: Shipping[] = [
     size: "3辺合計80cm以内",
     maxHeight: 80,
     g: 5000,
-    cost: 900,
+    cost: 750,
     available: {
       mercari: false,
       rakuma: true,
@@ -591,7 +601,7 @@ export const shippings: Shipping[] = [
     size: "3辺合計100cm以内",
     maxHeight: 100,
     g: 10000,
-    cost: 1150,
+    cost: 1050,
     available: {
       mercari: false,
       rakuma: true,
@@ -602,7 +612,7 @@ export const shippings: Shipping[] = [
     size: "3辺合計120cm以内",
     maxHeight: 120,
     g: 15000,
-    cost: 1350,
+    cost: 1200,
     available: {
       mercari: false,
       rakuma: true,
@@ -613,7 +623,7 @@ export const shippings: Shipping[] = [
     size: "3辺合計140cm以内",
     maxHeight: 140,
     g: 20000,
-    cost: 1550,
+    cost: 1400,
     available: {
       mercari: false,
       rakuma: true,
@@ -624,7 +634,7 @@ export const shippings: Shipping[] = [
     size: "3辺合計160cm以内",
     maxHeight: 160,
     g: 25000,
-    cost: 1800,
+    cost: 1500,
     available: {
       mercari: false,
       rakuma: true,
@@ -635,7 +645,7 @@ export const shippings: Shipping[] = [
     size: "3辺合計180cm以内",
     maxHeight: 180,
     g: 30000,
-    cost: 2100,
+    cost: 2800,
     available: {
       mercari: false,
       rakuma: true,
@@ -646,7 +656,7 @@ export const shippings: Shipping[] = [
     size: "3辺合計200cm以内",
     maxHeight: 200,
     g: 30000,
-    cost: 2500,
+    cost: 3350,
     available: {
       mercari: false,
       rakuma: true,
