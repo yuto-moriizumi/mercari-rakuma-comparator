@@ -81,7 +81,7 @@ export function ShippingTable(props: {
               }) => (
                 <TableRow key={id}>
                   <TableCell>
-                    <Box alignContent="center" display="flex" flexWrap="wrap">
+                    <Box sx={{ alignContent: "center", display: "flex", flexWrap: "wrap" }}>
                       <MercariIcon valid={available.mercari} />
                       <RakumaIcon valid={available.rakuma} />
                       <Typography sx={{ wordBreak: "keep-all" }}>
@@ -95,26 +95,17 @@ export function ShippingTable(props: {
                     </Typography>
                   </TableCell>
                   <TableCell>
-                    <Typography
-                      textAlign="right"
-                      sx={{ wordBreak: "keep-all" }}
-                    >
+                    <Typography sx={{ textAlign: "right", wordBreak: "keep-all" }}>
                       {maxHeight}cm
                     </Typography>
                   </TableCell>
                   <TableCell>
-                    <Typography
-                      textAlign="right"
-                      sx={{ wordBreak: "keep-all" }}
-                    >
+                    <Typography sx={{ textAlign: "right", wordBreak: "keep-all" }}>
                       {g >= 1000 ? `${g / 1000}kg` : `${g}g`}
                     </Typography>
                   </TableCell>
                   <TableCell>
-                    <Typography
-                      textAlign="right"
-                      sx={{ wordBreak: "keep-all" }}
-                    >
+                    <Typography sx={{ textAlign: "right", wordBreak: "keep-all" }}>
                       {cost}円
                     </Typography>
                   </TableCell>

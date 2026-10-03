@@ -42,8 +42,8 @@ export default function Home() {
           <Typography
             variant="h3"
             component="h1"
-            textAlign="center"
             sx={{
+              textAlign: "center",
               wordBreak: "keep-all",
             }}
           >
@@ -54,7 +54,7 @@ export default function Home() {
           <Typography variant="h5" component="h2">
             フィルター
           </Typography>
-          <Stack direction="row" spacing={2} justifyContent="space-around">
+          <Stack direction="row" spacing={2} sx={{ justifyContent: "space-around" }}>
             <FormControl fullWidth>
               <FormLabel>サービス</FormLabel>
               <RadioGroup
@@ -85,10 +85,12 @@ export default function Home() {
               fullWidth
               value={height}
               onChange={(e) => setHeight(Number(e.target.value))}
-              InputProps={{
+              slotProps={{
+                input: {
                 endAdornment: (
                   <InputAdornment position="end">cm</InputAdornment>
                 ),
+                },
               }}
             />
             <TextField
@@ -97,8 +99,10 @@ export default function Home() {
               fullWidth
               value={g}
               onChange={(e) => setG(Number(e.target.value))}
-              InputProps={{
-                endAdornment: <InputAdornment position="end">g</InputAdornment>,
+              slotProps={{
+                input: {
+                  endAdornment: <InputAdornment position="end">g</InputAdornment>,
+                },
               }}
             />
           </Stack>
